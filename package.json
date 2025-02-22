@@ -1,0 +1,22 @@
+{
+	"name": "botfirst",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node src/index.js",
+		"dev": "nodemon src/index.js"
+	},
+	"dependencies": {
+		"axios": "^1.7.9",
+		"discord.js": "^14.18.0",
+		"dotenv": "^16.4.7"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.9"
+	}
+}
