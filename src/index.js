@@ -91,5 +91,11 @@ bot.on("messageCreate", async (msg) => {
 		}
 	}
 });
+bot.on("error", (error) => {
+	console.error("Discord bot error:", error);
+});
 
+process.on("unhandledRejection", (error) => {
+	console.error("Unhandled promise rejection:", error);
+});
 bot.login(token);
