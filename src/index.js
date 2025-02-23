@@ -61,10 +61,18 @@ bot.on("messageCreate", async (msg) => {
 				.slice(0, 5);
 			return image;
 		};
-		let imageValue = await getImage();
-		for (let img of imageValue) {
-			const embed = new Discord.EmbedBuilder().setImage(img);
-			await msg.channel.send({ embeds: [embed] });
+
+		try {
+			let imageValue = await getImage();
+			for (let img of imageValue) {
+				const embed = new Discord.EmbedBuilder().setImage(img);
+				await msg.channel.send({ embeds: [embed] });
+			}
+		} catch (error) {
+			console.error("Error fetching images:", error);
+			msg.channel.send(
+				"⚠️ Could not fetch images. Try again later or try with different search terms."
+			);
 		}
 	}
 });
