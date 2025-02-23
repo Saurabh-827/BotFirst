@@ -2,6 +2,21 @@ const Discord = require("discord.js");
 const axios = require("axios");
 const { GatewayIntentBits } = require("discord.js");
 require("dotenv").config();
+const express = require("express"); // Added for Render compatibility
+
+// Create an Express app to bind to a port
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Dummy route to keep the server alive
+app.get("/", (req, res) => {
+	res.send("Discord bot is running!");
+});
+
+// Start the server
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
+});
 
 const bot = new Discord.Client({
 	intents: [
