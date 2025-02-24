@@ -69,12 +69,21 @@ bot.on("messageCreate", async (msg) => {
 		let query = args.join(" ");
 		let getImage = async () => {
 			let response = await axios.get(
-				`https://imagestack.onrender.com/api/search/photos?query=${query}`
+				`https://imager-m7gl.onrender.com/api/photos/search?queryTerm=${query}`
 			);
-			let image = response.data.photos
-				.map((photo) => photo.imageUrl)
-				.slice(0, 5);
-			return image;
+			console.log(response.status);
+			if (response.status !== 200) {
+				await axios.get(
+					"https://imager-m7gl.onrender.com/api/photos/search?queryTerm=nature"
+				);
+				response = await axios.get(
+					`https://imager-m7gl.onrender.com/api/photos/search?queryTerm=${query}`
+				);
+			}
+			let image = response.data.map((photo) => photo.imageUrl);
+			let img = image.slice(0, 5);
+
+			return img;
 		};
 
 		try {
