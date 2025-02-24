@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const axios = require("axios");
-const { GatewayIntentBits } = require("discord.js");
+const { GatewayIntentBits, AttachmentBuilder } = require("discord.js");
 require("dotenv").config();
 const express = require("express"); // Added for Render compatibility
+const { EmbedBuilder } = require("discord.js");
 
 // Create an Express app to bind to a port
 const app = express();
@@ -89,7 +90,7 @@ bot.on("messageCreate", async (msg) => {
 		try {
 			let imageValue = await getImage();
 			for (let img of imageValue) {
-				const embed = new Discord.EmbedBuilder().setImage(img);
+				const embed = new EmbedBuilder().setImage(img);
 				await msg.channel.send({ embeds: [embed] });
 			}
 		} catch (error) {
